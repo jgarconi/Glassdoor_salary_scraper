@@ -23,9 +23,11 @@ $ pip install selenium
 2. Add your Glassdoor account username and password.
 
 ![](http://imgur.com/TVBtyr7.png)
+
 3. Specify the number of pages, the city name, and the URL of the salaries page for the city on Glassdoor with your specified filters selected.
 
 ![](http://imgur.com/xcgzm1S.png)
+
 4. Run the scraper
 ```sh
 $ python scraper.py
