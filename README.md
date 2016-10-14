@@ -20,9 +20,9 @@ $ pip install selenium
 ## Usage
 
 1. Open the scraper Python script with a text editor of your choice. 
-2. Add your Glassdoor account username and password
+2. Add your Glassdoor account username and password.
 ![username and password](http://imgur.com/TVBtyr7.png)
-3. Specify the number of pages, the city name, and the URL of the salaries page for the city on Glassdoor with your specified filters selected
+3. Specify the number of pages, the city name, and the URL of the salaries page for the city on Glassdoor with your specified filters selected.
 ![scraper settings](http://imgur.com/xcgzm1S.png)
 4. Run the scraper
 ```sh
@@ -33,6 +33,6 @@ NOTE: Glassdoor will require you to insert CAPTCHA on login or during the scrapi
 
 ## Results
 
-![response](http://i.imgur.com/zY8l22v.png)
+![response](http://imgur.com/RlDhpbi.png)
 
 The web scraper will output a JSON with the name "[city name].json" in the same directory. Each data point in the JSON corresponds to one salary on Glassdoor with attributes (company name, job title).
