@@ -19,7 +19,8 @@ $ pip install selenium
 
 ## Usage
 
-1) Open the scraper Python script with a text editor of your choice. 
+1) Open the scraper Python script with a text editor of your choice.
+
 2) Add your Glassdoor account username and password.
 
 ![](http://imgur.com/TVBtyr7.png)
