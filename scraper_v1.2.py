@@ -1,6 +1,6 @@
 import time
 import json
-import Review
+import Salary
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -9,20 +9,20 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
 
-username = "example@email.com" # your email here
-password = "password" # your password here
+username = "" # your email here
+password = "" # your password here
 
-# Manual options for the company, num pages to scrape, and URL
-pages = 10
-companyName = "microsoft"
-companyURL = "https://www.glassdoor.com/Interview/Microsoft-Software-Development-Engineer-Interview-Questions-EI_IE1651.0,9_KO10,39.htm"
+# Manual options for the city, num pages to scrape, and URL
+pages = 6
+cityName = "new-york-city"
+cityURL = "https://www.glassdoor.com/Salaries/new-york-city-data-scientist-salary-SRCH_IL.0,13_IM615_KO14,28.htm"
 
 def obj_dict(obj):
     return obj.__dict__
 #enddef
 
 def json_export(data):
-	jsonFile = open(companyName + ".json", "w")
+	jsonFile = open(cityName + ".json", "w")
 	jsonFile.write(json.dumps(data, indent=4, separators=(',', ': '), default=obj_dict))
 	jsonFile.close()
 #enddef
@@ -50,55 +50,18 @@ def login(driver, username, password):
         print("TimeoutException! Username/password field or login button not found on glassdoor.com")
 #enddef
 
-def parse_reviews_HTML(reviews, data):
-	for review in reviews:
-		length = "-"
-		gotOffer = "-"
-		experience = "-"
-		difficulty = "-"
-		date = review.find("time", { "class" : "date" }).getText().strip()
-		role = review.find("span", { "class" : "reviewer"}).getText().strip()
-		outcomes = review.find_all("div", { "class" : ["tightLt", "col"] })
-		if (len(outcomes) > 0):
-			gotOffer = outcomes[0].find("span", { "class" : "middle"}).getText().strip()
-		#endif
-		if (len(outcomes) > 1):
-			experience = outcomes[1].find("span", { "class" : "middle"}).getText().strip()
-		#endif
-		if (len(outcomes) > 2):
-			difficulty = outcomes[2].find("span", { "class" : "middle"}).getText().strip()
-		#endif
-		appDetails = review.find("p", { "class" : "applicationDetails"})
-		if (appDetails):
-			appDetails = appDetails.getText().strip()
-			tookFormat = appDetails.find("took ")
-			if (tookFormat >= 0):
-				start = appDetails.find("took ") + 5
-				length = appDetails[start :].split('.', 1)[0]
-			#endif
-		else:
-			appDetails = "-"
-		#endif
-		details = review.find("p", { "class" : "interviewDetails"})
-		if (details):
-			s = details.find("span", { "class" : ["link", "moreLink"] })
-			if (s):
-				s.extract() # Remove the "Show More" text and link if it exists
-			#endif
-			details = details.getText().strip()
-		#endif
-		questions = []
-		qs = review.find_all("span", { "class" : "interviewQuestion"})
-		if (qs):
-			for q in qs:
-				s = q.find("span", { "class" : ["link", "moreLink"] })
-				if (s):
-					s.extract() # Remove the "Show More" text and link if it exists
-				#endif
-				questions.append(q.getText().encode('utf-8').strip())
-			#endfor
-		#endif
-		r = Review.Review(date, role, gotOffer, experience, difficulty, length, details, questions)
+def parse_salaries_HTML(salaries, data):
+	for salary in salaries:
+		jobTitle = "-"
+		company = "-"
+		meanPay = "-"
+		jobTitle = salary.find("a", { "class" : "jobTitle"}).getText().strip()
+		company = salary.find("div", { "class" : "i-emp"}).getText().strip()
+		try:
+			meanPay = salary.find("div", { "class" : "meanPay"}).find("strong").getText().strip()
+		except:
+			meanPay = 'xxx'
+		r = Salary.Salary(jobTitle, company, meanPay)
 		data.append(r)
 	#endfor
 	return data
@@ -119,9 +82,9 @@ def get_data(driver, URL, startPage, endPage, data, refresh):
 	time.sleep(2)
 	HTML = driver.page_source
 	soup = BeautifulSoup(HTML, "html.parser")
-	reviews = soup.find_all("li", { "class" : ["empReview", "padVert"] })
-	if (reviews):
-		data = parse_reviews_HTML(reviews, data)
+	salaries = soup.find("div", { "class" : ["salaryChartModule"] }).find_all("div", { "class" : ["salaryRow"] })
+	if (salaries):
+		data = parse_salaries_HTML(salaries, data)
 		print "Page " + str(startPage) + " scraped."
 		if (startPage % 10 == 0):
 			print "\nTaking a breather for a few seconds ..."
@@ -141,10 +104,10 @@ if __name__ == "__main__":
 	time.sleep(3)
 	print "Logging into Glassdoor account ..."
 	login(driver, username, password)
-	time.sleep(5)
+	time.sleep(10)
 	print "\nStarting data scraping ..."
-	data = get_data(driver, companyURL[:-4], 1, pages, [], True)
-	print "\nExporting data to " + companyName + ".json"
+	data = get_data(driver, cityURL[:-4], 1, pages, [], True)
+	print "\nExporting data to " + cityName + ".json"
 	json_export(data)
 	driver.quit()
 #endif

@@ -1,0 +1,597 @@
+[
+    {
+        "meanPay": "$104,714",
+        "jobTitle": "Data Scientist",
+        "company": "AIG"
+    },
+    {
+        "meanPay": "$136,000",
+        "jobTitle": "Data Scientist",
+        "company": "Knewton"
+    },
+    {
+        "meanPay": "$101,667",
+        "jobTitle": "Data Scientist",
+        "company": "Audible"
+    },
+    {
+        "meanPay": "$108,114",
+        "jobTitle": "Data Scientist",
+        "company": "Case Commons"
+    },
+    {
+        "meanPay": "$150,038",
+        "jobTitle": "Data Scientist",
+        "company": "EBH Enterprises"
+    },
+    {
+        "meanPay": "$87k - $107k",
+        "jobTitle": "Data Scientist",
+        "company": "IBM"
+    },
+    {
+        "meanPay": "$97k - $126k",
+        "jobTitle": "Data Scientist",
+        "company": "Booz Allen Hamilton"
+    },
+    {
+        "meanPay": "$39 - $43",
+        "jobTitle": "Data Scientist Intern - Hourly",
+        "company": "Cablevision Systems"
+    },
+    {
+        "meanPay": "$115k - $134k",
+        "jobTitle": "Data Scientist",
+        "company": "Bloomberg L.P."
+    },
+    {
+        "meanPay": "$107k - $136k",
+        "jobTitle": "Data Scientist",
+        "company": "Integral Ad Science"
+    },
+    {
+        "meanPay": "$53k - $69k",
+        "jobTitle": "Data Scientist",
+        "company": "Marketing Evolution"
+    },
+    {
+        "meanPay": "$67k - $94k",
+        "jobTitle": "Data Scientist",
+        "company": "DemystData"
+    },
+    {
+        "meanPay": "$87k - $140k",
+        "jobTitle": "Data Scientist",
+        "company": "OnDeck"
+    },
+    {
+        "meanPay": "$60k - $78k",
+        "jobTitle": "Data Scientist",
+        "company": "Credit Suisse"
+    },
+    {
+        "meanPay": "$82k - $93k",
+        "jobTitle": "Data Scientist",
+        "company": "1010data"
+    },
+    {
+        "meanPay": "$122k - $136k",
+        "jobTitle": "Data Scientist",
+        "company": "Oscar Insurance"
+    },
+    {
+        "meanPay": "$61k - $133k",
+        "jobTitle": "Data Scientist",
+        "company": "J.P. Morgan"
+    },
+    {
+        "meanPay": "$91k - $110k",
+        "jobTitle": "Data Scientist",
+        "company": "American Express"
+    },
+    {
+        "meanPay": "$134k - $147k",
+        "jobTitle": "Data Scientist",
+        "company": "Paperless Post"
+    },
+    {
+        "meanPay": "$124k - $137k",
+        "jobTitle": "Data Scientist",
+        "company": "Time Inc."
+    },
+    {
+        "meanPay": "$60k - $99k",
+        "jobTitle": "Data Scientist",
+        "company": "Outbrain"
+    },
+    {
+        "meanPay": "$75k - $119k",
+        "jobTitle": "Data Scientist",
+        "company": "ConsultAdd"
+    },
+    {
+        "meanPay": "$104k - $114k",
+        "jobTitle": "Data Scientist",
+        "company": "American Express TRS"
+    },
+    {
+        "meanPay": "$130k - $165k",
+        "jobTitle": "Data Scientist",
+        "company": "Intent Media"
+    },
+    {
+        "meanPay": "$139k - $151k",
+        "jobTitle": "Data Scientist",
+        "company": "Facebook"
+    },
+    {
+        "meanPay": "$77k - $83k",
+        "jobTitle": "Data Scientist",
+        "company": "KPMG"
+    },
+    {
+        "meanPay": "$100k - $108k",
+        "jobTitle": "Data Scientist",
+        "company": "Google"
+    },
+    {
+        "meanPay": "$145k - $155k",
+        "jobTitle": "Data Scientist",
+        "company": "Fractal Analytics"
+    },
+    {
+        "meanPay": "$109k - $118k",
+        "jobTitle": "Data Scientist",
+        "company": "ADP"
+    },
+    {
+        "meanPay": "$121k - $130k",
+        "jobTitle": "Data Scientist",
+        "company": "Pandora Media"
+    },
+    {
+        "meanPay": "$144k - $157k",
+        "jobTitle": "Data Scientist",
+        "company": "Citi"
+    },
+    {
+        "meanPay": "$86k - $94k",
+        "jobTitle": "Data Scientist",
+        "company": "Feedzai"
+    },
+    {
+        "meanPay": "$52k - $57k",
+        "jobTitle": "Data Scientist",
+        "company": "FINRA"
+    },
+    {
+        "meanPay": "$127k - $139k",
+        "jobTitle": "Data Scientist",
+        "company": "Chubb"
+    },
+    {
+        "meanPay": "$135k - $147k",
+        "jobTitle": "Data Scientist",
+        "company": "Spotify"
+    },
+    {
+        "meanPay": "$77k - $84k",
+        "jobTitle": "Data Scientist",
+        "company": "CA Technologies"
+    },
+    {
+        "meanPay": "$134k - $144k",
+        "jobTitle": "Data Scientist",
+        "company": "MasterCard"
+    },
+    {
+        "meanPay": "$131k - $139k",
+        "jobTitle": "Data Scientist",
+        "company": "AppNexus"
+    },
+    {
+        "meanPay": "$83k - $89k",
+        "jobTitle": "Data Scientist",
+        "company": "MetLife"
+    },
+    {
+        "meanPay": "$125k - $136k",
+        "jobTitle": "Data Scientist",
+        "company": "Palantir Technologies"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Capital One"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "PwC"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Twitter"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Cognizant Technology Solutions"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Rang Technologies"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Nielsen"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Gallup"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Verizon"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Amazon.com"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Verizon Wireless"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Experian"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Kabbage"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Honeywell"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Thomson Reuters"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "84.51\u00b0"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Zynga"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Macy's"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "AOL"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Morgan Stanley"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Match"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Fidelity Investments"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "DISH"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Seamless"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Etsy"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Dealer.com"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Huawei Technologies"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Comcast"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Lightpath"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "GrubHub"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "HookLogic"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "World Wrestling Entertainment"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "NPD"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Insurance Services Office"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "Hearst"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist",
+        "company": "comScore"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Nielsen"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "OnDeck"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Birchbox"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Entry Level Data Scientist",
+        "company": "IBM"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist II",
+        "company": "MetLife"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist II",
+        "company": "EMC"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist II",
+        "company": "Zurich North America"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Verisk Analytics"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Atos"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "IBM"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "KPMG"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Capital One"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Booz Allen Hamilton"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Verizon"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "AT&T"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "AOL"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Razorfish"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "BNY Mellon"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Chegg"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "EMC"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Verizon Wireless"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Thomson Reuters"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "ThoughtWorks"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "2U"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "ADP"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "FIS"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Aetna"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Comcast"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Senior Data Scientist",
+        "company": "Pivotal"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Junior Data Scientist",
+        "company": "Verizon"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Junior Data Scientist",
+        "company": "Verizon Wireless"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Junior Data Scientist",
+        "company": "Zurich North America"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Junior Data Scientist",
+        "company": "McKinsey & Company"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist Intern",
+        "company": "IBM"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist Intern",
+        "company": "Lightpath"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Chief Data Scientist",
+        "company": "Capital One"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Principal Data Scientist",
+        "company": "Think Big"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Principal Data Scientist",
+        "company": "AT&T"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Principal Data Scientist",
+        "company": "Thomson Reuters"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Principal Data Scientist",
+        "company": "BNY Mellon"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Principal Data Scientist",
+        "company": "Comcast"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Associate Data Scientist",
+        "company": "Ascensus"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist I",
+        "company": "Pivotal"
+    },
+    {
+        "meanPay": "xxx",
+        "jobTitle": "Data Scientist I",
+        "company": "EMC"
+    }
+]
