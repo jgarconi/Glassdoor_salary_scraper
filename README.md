@@ -1,6 +1,6 @@
 # glassdoor-salary-scraper
 
-Current Version: 1.0
+Current Version: 2.0
 
 Glassdoor web crawler and scraper providing salary data. Forked and modified from [williamxie11](https://github.com/williamxie11/glassdoor-interview-scraper).
 
