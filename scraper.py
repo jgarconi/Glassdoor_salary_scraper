@@ -1,5 +1,6 @@
 import time
 import json
+import pickle
 import Salary
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -12,19 +13,14 @@ from selenium.webdriver.common.keys import Keys
 username = "" # your email here
 password = "" # your password here
 
-# Manual options for the city, num pages to scrape, and URL
-pages = 6
-cityName = "new-york-city"
-cityURL = "https://www.glassdoor.com/Salaries/new-york-city-data-scientist-salary-SRCH_IL.0,13_IM615_KO14,28.htm"
-
 def obj_dict(obj):
     return obj.__dict__
 #enddef
 
-def json_export(data):
-	jsonFile = open(cityName + ".json", "w")
-	jsonFile.write(json.dumps(data, indent=4, separators=(',', ': '), default=obj_dict))
-	jsonFile.close()
+def json_export(data, cityName):
+    jsonFile = open("Data/" + cityName + ".json", "w")
+    jsonFile.write(json.dumps(data, indent=4, separators=(',', ': '), default=obj_dict))
+    jsonFile.close()
 #enddef
 
 def init_driver():
@@ -50,64 +46,90 @@ def login(driver, username, password):
         print("TimeoutException! Username/password field or login button not found on glassdoor.com")
 #enddef
 
-def parse_salaries_HTML(salaries, data):
-	for salary in salaries:
-		jobTitle = "-"
-		company = "-"
-		meanPay = "-"
-		jobTitle = salary.find("a", { "class" : "jobTitle"}).getText().strip()
-		company = salary.find("div", { "class" : "i-emp"}).getText().strip()
-		try:
-			meanPay = salary.find("div", { "class" : "meanPay"}).find("strong").getText().strip()
-		except:
-			meanPay = 'xxx'
-		r = Salary.Salary(jobTitle, company, meanPay)
-		data.append(r)
-	#endfor
-	return data
+def search(driver, city, title):
+    driver.get("https://www.glassdoor.com/Salaries/index.htm")
+    try:
+        search_btn = WebDriverWait(driver, 10).until(EC.presence_of_element_located(
+            (By.CLASS_NAME, "showHH")))
+        time.sleep(5)
+        title_field = driver.find_element_by_id("KeywordSearch")
+        city_field = driver.find_element_by_id("LocationSearch")
+        title_field.send_keys(title)
+        title_field.send_keys(Keys.TAB)
+        time.sleep(1)
+        city_field.send_keys(city)
+        city_field.send_keys(Keys.RETURN)
+        time.sleep(1)
+    except TimeoutException:
+        print("TimeoutException! city/title field or search button not found on glassdoor.com")
 #enddef
 
-def get_data(driver, URL, startPage, endPage, data, refresh):
-	if (startPage > endPage):
-		return data
-	#endif
-	print "\nPage " + str(startPage) + " of " + str(endPage)
-	currentURL = URL + "_IP" + str(startPage) + ".htm"
-	time.sleep(2)
-	#endif
-	if (refresh):
-		driver.get(currentURL)
-		print "Getting " + currentURL
-	#endif
-	time.sleep(2)
-	HTML = driver.page_source
-	soup = BeautifulSoup(HTML, "html.parser")
-	salaries = soup.find("div", { "class" : ["salaryChartModule"] }).find_all("div", { "class" : ["salaryRow"] })
-	if (salaries):
-		data = parse_salaries_HTML(salaries, data)
-		print "Page " + str(startPage) + " scraped."
-		if (startPage % 10 == 0):
-			print "\nTaking a breather for a few seconds ..."
-			time.sleep(10)
-		#endif
-		get_data(driver, URL, startPage + 1, endPage, data, True)
-	else:
-		print "Waiting ... page still loading or CAPTCHA input required"
-		time.sleep(3)
-		get_data(driver, URL, startPage, endPage, data, False)
-	#endif
-	return data
+def parse_salaries_HTML(salaries, data, city):
+    for salary in salaries:
+        jobTitle = "-"
+        company = "-"
+        meanPay = "-"
+        jobTitle = salary.find("a", { "class" : "jobTitle"}).getText().strip()
+        company = salary.find("div", { "class" : "i-emp"}).getText().strip()
+        try:
+            meanPay = salary.find("div", { "class" : "meanPay"}).find("strong").getText().strip()
+        except:
+            meanPay = 'xxx'
+        r = Salary.Salary(jobTitle, company, meanPay, city)
+        data.append(r)
+    #endfor
+    return data
+#enddef
+
+def get_data(driver, URL, city, data, refresh, startPage=1):
+    print "\nPage " + str(startPage)
+    if (refresh):
+        driver.get(URL)
+        print "Getting " + URL
+        time.sleep(2)
+    try:
+        next_btn = driver.find_element_by_class_name("next")
+        next_link = next_btn.find_element_by_css_selector("a").get_attribute('href')
+    except:
+        next_btn = False
+        next_link = False
+    #endif
+    time.sleep(2)
+    HTML = driver.page_source
+    soup = BeautifulSoup(HTML, "html.parser")
+    try:
+        salaries = soup.find("div", { "class" : ["salaryChartModule"] }).find_all("div", { "class" : ["salaryRow"] })
+    except:
+        salaries = False
+    if (salaries):
+        data = parse_salaries_HTML(salaries, data, city)
+        print "Page " + str(startPage) + " scraped."
+        if (next_link):
+            get_data(driver, next_link, city, data, True, startPage + 1)
+    else:
+        print "No data available for", city
+    #endif
+    return data
 #enddef
 
 if __name__ == "__main__":
-	driver = init_driver()
-	time.sleep(3)
-	print "Logging into Glassdoor account ..."
-	login(driver, username, password)
-	time.sleep(10)
-	print "\nStarting data scraping ..."
-	data = get_data(driver, cityURL[:-4], 1, pages, [], True)
-	print "\nExporting data to " + cityName + ".json"
-	json_export(data)
-	driver.quit()
+    driver = init_driver()
+    time.sleep(3)
+    print "Logging into Glassdoor account ..."
+    login(driver, username, password)
+    time.sleep(10)
+    # search(driver, city, title)
+    print "\nStarting data scraping ..."
+    city_list = open("cities.txt").read().splitlines()
+    data_out = []
+    for city in city_list:
+        search(driver, city, 'Data Scientist')
+        appendable = get_data(driver, driver.current_url, city, [], False, 1)
+        print "\nExporting data to " + city + ".json"
+        if appendable:
+            data_out.append(appendable)
+            json_export(appendable, city)
+    if data_out:
+        json_export(data_out, 'allcities')
+    driver.quit()
 #endif
