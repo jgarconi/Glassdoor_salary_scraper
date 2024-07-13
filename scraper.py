@@ -21,19 +21,14 @@ username = # your email here
 password = # your password here
 
 # Manual options for the company, num pages to scrape, and URL
-pages = 1
-companyName = "radioRegionalFM"
-companyURL = "https://www.glassdoor.com.br/Salário/Rádio-Regional-Fm-Salários-E2656122.htm"
+#pages = 6
+#companyName = "rede_bahia"
+#companyURL = "https://www.glassdoor.com.br/Salário/Rede-Bahia-Salários-E2485970.htm"
 loginURL = "http://www.glassdoor.com/profile/login_input.htm"
 salaries = []
 
 def obj_dict(obj):
     return obj.__dict__
-
-def json_export(data):
-	jsonFile = open(companyName + ".json", "w")
-	jsonFile.write(json.dumps(data, indent=4, separators=(',', ': '), default=obj_dict))
-	jsonFile.close()
 
 def init_driver():
     service = Service(executable_path = "/usr/lib/chromium-browser/chromedriver")
@@ -170,27 +165,28 @@ def get_data(driver, URL, startPage, endPage, salaries, refresh):
 	return pd.DataFrame(salaries)
 
 if __name__ == "__main__":
-	driver = init_driver()
-	time.sleep(3)
-	print("Logging into Glassdoor account ...")
-	login(driver, username, password, loginURL)
-	time.sleep(5)
-	#print("Loading Payment page ...")
-	#load_page(driver, companyURL[:-4], 1, True)
-	#time.sleep(4)
-	print("Starting data scraping ...")
-	df = get_data(driver, companyURL[:-4], 1, pages, salaries, True)
-	time.sleep(2)
+	with open("emissoras.txt", "r") as file:
+		lines = file.readlines()
 
-	print("Exportando tabela salarios.csv")
-	df.to_csv("salarios_" + companyName + ".csv", index=False)
-	#print("\nWaiting to close page...")
-	#time.sleep(120)
-	#print("\nStarting data scraping ...")
-	#data = get_data(driver, companyURL[:-4], 1, pages, [], True)
-	#print("\nExporting data to " + companyName + ".json")
-	#json_export(data)
-	print("Terminando execução em 5 seg ...")
-	time.sleep(5)
-	driver.quit()
+	for line in lines:
+		companyName, url, pages = line.strip().split(",")
+		pages = int(pages)
+
+		driver = init_driver()
+		time.sleep(3)
+
+		print("Logging into Glassdoor account ...")
+		login(driver, username, password, loginURL)
+		time.sleep(5)
+
+		print(f"Starting data scraping for {url} ...")
+		df = get_data(driver, url[:-4], 1, pages, [], True)
+		time.sleep(2)
+
+		print(f"Exporting table for {url} to salarios_{companyName}.csv")
+		df.to_csv(f"salarios_{companyName}.csv", index=False)
+		print(f"Terminating execution for {companyName} in 5 seconds ...")
+		time.sleep(5)
+
+		driver.quit()
 #endif
