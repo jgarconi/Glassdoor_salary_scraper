@@ -1,0 +1,11 @@
+# Important Comments:
+# File Organization: Company name, Glassdoor company salaries URL, first page to scrape, last page to scrape.
+# Notes: Remember to use special characters if necessary, i.e., change Sal%C3%A1rio to Salário.
+#        The initial page is not necessarily page 1.
+#        The number indicating the first page to be processed must be less than the last page. 
+#        If these numbers are equal, only the page corresponding to that number will be processed.
+
+Google, https://www.glassdoor.com.br/Salário/Google-Salários-E9079.htm, 1, 3
+Microsoft, https://www.glassdoor.com.br/Salário/Microsoft-Salários-E1651.htm, 2, 4
+Apple, https://www.glassdoor.com.br/Salário/Apple-Salários-E1138.htm, 7, 2
+Amazon, https://www.glassdoor.com.br/Salário/Amazon-Salários-E6036.htm, 1, 1
