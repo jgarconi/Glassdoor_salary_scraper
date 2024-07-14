@@ -12,35 +12,43 @@ import time  # For time-related functions
 
 # Local imports
 from credentials import credentials
-from utils import init_driver, login, scrap_data
+from utils import init_driver, login, scrape_data
 
 LOGIN_URL = "http://www.glassdoor.com/profile/login_input.htm"
+USERNAME = credentials.get('USERNAME')
+PASSWORD = credentials.get('PASSWORD')
 
-username = credentials.get('USERNAME')
-password = credentials.get('PASSWORD')
-        
 if __name__ == "__main__":
-	with open("companies.txt", "r") as file:
-		lines = file.readlines()
+    with open("companies.txt", "r") as file:
+        lines = file.readlines()
 
-	for line in lines:
-		company_name, url, last_page = line.strip().split(",")
-		last_page = int(last_page)
+    for line in lines:
+        # Ignore comments and blank lines in companies.txt
+        if line.startswith('#') or line.strip() == "":
+            continue
 
-		driver = init_driver()
-		time.sleep(2)
+        company_name, url, start_page, end_page = parts
+        start_page = int(start_page)
+        end_page = int(end_page)
 
-		print("Logging into Glassdoor account ...")
-		login(driver, username, password, LOGIN_URL)
-		time.sleep(5)
+        if start_page > end_page:
+            print("The first page can't be bigger than the last page. Skipping company.")
+            continue
 
-		print(f"Starting data scraping for {url} ...")
-		df = scrap_data(driver, url[:-4], 1, last_page, [], True)
-		time.sleep(2)
+        driver = init_driver()
+        time.sleep(2)
 
-		print(f"Exporting table from {url} to {company_name}_salaries.csv")
-		df.to_csv(f"{company_name}_salaries.csv", index=False)
-		print(f"Terminating execution for {company_name} salary crapping in 5 seconds ...")
-		time.sleep(5)
+        print("Logging into Glassdoor account ...")
+        login(driver, USERNAME, PASSWORD, LOGIN_URL)
+        time.sleep(5)
 
-		driver.quit()
+        print(f"Starting data scraping for {url} ...")
+        df = scrape_data(driver, url[:-4], start_page, end_page, [], True)
+        time.sleep(2)
+
+        print(f"Exporting table from {url} to {company_name}_salaries.csv")
+        df.to_csv(f"{company_name}_salaries.csv", index=False)
+        print(f"Terminating execution for {company_name} salary scraping in 5 seconds ...")
+        time.sleep(5)
+
+        driver.quit()

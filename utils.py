@@ -22,7 +22,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException 
 
 # Init chrome driver
 def init_driver():
-    service = Service(executable_path = "/usr/lib/chromium-browser/czhromedriver")
+    service = Service(executable_path = "/usr/lib/chromium-browser/chromedriver")
     driver = webdriver.Chrome(service=service)
     driver.wait = WebDriverWait(driver, 10)
     return driver
@@ -30,35 +30,36 @@ def init_driver():
 # Login process
 def login(driver, username, password, login_url):
     driver.get(login_url)
+        
     try:
 		# Wait for first login page load
         driver.wait.until(EC.presence_of_element_located((By.ID, "inlineUserEmail")))
-        time.sleep(.1)
+        time.sleep(1)
             
 		# Find the field and input the username
-        user_input = driver.find_element(By.ID, "inlineUserEmail")    
+        user_input = driver.find_element(By.ID, "inlineUserEmail")
         user_input.send_keys(username)
-        time.sleep(.1)
+        time.sleep(1)
         
         # Find and click the continue botton
         continue_button = driver.find_element(By.CLASS_NAME, "emailButton")
         continue_button.click()
-        time.sleep(2)
+        time.sleep(1)
         
         # Find the field and input the password
         password_input = driver.find_element(By.ID, "inlineUserPassword")
         password_input.send_keys(password)
-        time.sleep(.1)
+        time.sleep(5)
 
         # Find and click the login button
         login_button = driver.find_element(By.CLASS_NAME, "emailButton")
         login_button.click()
-        time.sleep(2)
+        time.sleep(10)
         
 		# Repeat the process in the second login page
         user_input = driver.find_element(By.ID, "inlineUserEmail")    
         user_input.send_keys(username)
-        time.sleep(.1)
+        time.sleep(1)
         
         continue_button = driver.find_element(By.CLASS_NAME, "emailButton")
         continue_button.click()
@@ -66,7 +67,7 @@ def login(driver, username, password, login_url):
         
         password_input = driver.find_element(By.ID, "inlineUserPassword")
         password_input.send_keys(password)
-        time.sleep(.1)
+        time.sleep(1)
         
         login_button = driver.find_element(By.CLASS_NAME, "emailButton")
         login_button.click()
@@ -76,8 +77,8 @@ def login(driver, username, password, login_url):
         print("TimeoutException! Username/password field or login button not found on glassdoor.com.br")
 
 # Load company page and select pay period monthly
-def load_page(driver, url, startPage, refresh):
-    current_url = url + "_P" + str(startPage) + ".htm"
+def load_page(driver, url, start_page, refresh):
+    current_url = url + "_P" + str(start_page) + ".htm"
 
     if refresh:
         driver.get(current_url)
@@ -101,12 +102,12 @@ def load_page(driver, url, startPage, refresh):
             print("TimeoutException! Button not found on glassdoor.com")
 
 # Data scrapping process
-def scrap_data(driver, url, startPage, endPage, salaries, refresh):
+def scrape_data(driver, url, start_page, end_page, salaries, refresh):
 	pages_failed = []
 	salaries = []
 
     # Extract data from every page
-	for page in range(startPage, endPage + 1):
+	for page in range(start_page, end_page + 1):
 		try:
 			load_page(driver, url, page, refresh)
 			time.sleep(3)
@@ -123,11 +124,11 @@ def scrap_data(driver, url, startPage, endPage, salaries, refresh):
 				job_title = row.find_element(By.XPATH, './td[1]/a').text.strip()
 				
 				# Extract the number of salaries submitted
-				salaries_submitted = row.find_element(By.XPATH, './td[1]/p').text.strip()
-				submission_count = re.search(r'\d+', salaries_submitted).group(0)
+				submission_count = row.find_element(By.XPATH, './td[1]/p').text.strip()
+				salaries_submitted = re.search(r'\d+', submission_count).group(0)
 				
 				# Extract the mean salary and bonus as a float number
-				if submission_count == "1":
+				if salaries_submitted == "1":
 					# Process to sigle salary submission
 					salary_string = row.find_element(By.XPATH, './td[2]/p').text.strip()
 					if 'R$' in salary_string:
@@ -154,7 +155,7 @@ def scrap_data(driver, url, startPage, endPage, salaries, refresh):
 					else:
 						continue
 
-				salaries.append({"Cargo": job_title, "Salários Enviados": submission_count, "Salário Médio": mean_salary, "Bônus": bonus})
+				salaries.append({"Job Title": job_title, "Salaries submitted": salaries_submitted, "Mean Salary": mean_salary, "Bonus": bonus})
 		
 		except NoSuchElementException:
 			pages_failed.append(page)
@@ -166,4 +167,3 @@ def scrap_data(driver, url, startPage, endPage, salaries, refresh):
 		print("All data were extracted successfully!")
 
 	return pd.DataFrame(salaries)
-
