@@ -1,2 +1,3 @@
 # Ignore credentials file
 credentials.py
+__pyache__/
